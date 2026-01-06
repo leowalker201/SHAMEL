@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<p> CLIQUE EM UM DOS APLICATIVOS</p>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shamel TV - Download</title>
+    <title>BAIXAR APLICATIVO</title>
     <style>
         * {
             margin: 0;
@@ -236,6 +237,17 @@
             // Inicia o download sem abrir nova página
             const link = document.createElement('a');
             link.href = downloadLink2;
+            link.download = ''; // Força o download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+                // Função para download da segunda imagem
+        function downloadApp3() {
+            // Inicia o download sem abrir nova página
+            const link = document.createElement('a');
+            link.href = downloadLink3;
             link.download = ''; // Força o download
             document.body.appendChild(link);
             link.click();

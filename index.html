@@ -41,35 +41,38 @@
             animation: fadeIn 0.8s ease-in;
         }
 
-        .download-btn {
+        /* Container para as imagens de download */
+        .download-images-container {
             display: flex;
-            align-items: center;
-            gap: 12px;
-            background: linear-gradient(135deg, #1e5ec6 0%, #2196F3 100%);
-            color: white;
-            border: none;
-            padding: 16px 40px;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 12px;
+            flex-direction: column;
+            gap: 24px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Estilo para cada imagem clicável */
+        .download-image-wrapper {
             cursor: pointer;
+            border-radius: 16px;
+            overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
         }
 
-        .download-btn:hover {
+        .download-image-wrapper:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(33, 150, 243, 0.5);
+        }
+
+        .download-image-wrapper:active {
             transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(33, 150, 243, 0.5);
-            background: linear-gradient(135deg, #2196F3 0%, #1e5ec6 100%);
         }
 
-        .download-btn:active {
-            transform: translateY(0);
-        }
-
-        .download-icon {
-            width: 24px;
-            height: 24px;
+        .download-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 16px;
         }
 
         .instructions {
@@ -132,9 +135,8 @@
                 height: 220px;
             }
 
-            .download-btn {
-                padding: 14px 32px;
-                font-size: 16px;
+            .download-images-container {
+                max-width: 100%;
             }
 
             .instructions {
@@ -153,20 +155,29 @@
 <body>
     <div class="App">
         <div class="container">
-            <img 
-                src="https://customer-assets.emergentagent.com/job_d3553814-e282-41ab-9c02-01dda7c27e28/artifacts/qhow7np1_unnamed.png" 
-                alt="Shamel TV Logo" 
-                class="logo"
-            />
             
-<a href="https://apk.shameltv.com/" class="download-btn" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center;">
-    <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-        <polyline points="7 10 12 15 17 10"></polyline>
-        <line x1="12" y1="15" x2="12" y2="3"></line>
-    </svg>
-    Baixar Aplicativo
-</a>
+            <!-- DUAS IMAGENS CLICÁVEIS PARA DOWNLOAD -->
+            <div class="download-images-container">
+                
+                <!-- PRIMEIRA IMAGEM - Shamel TV -->
+                <div class="download-image-wrapper" onclick="downloadApp1()">
+                    <img 
+                        src="https://customer-assets.emergentagent.com/job_a0289693-7d97-4f72-beb9-4a8b2903a8cd/artifacts/q31cci62_1%20%281%29.jpg" 
+                        alt="Download Shamel TV" 
+                        class="download-image"
+                    />
+                </div>
+
+                <!-- SEGUNDA IMAGEM - Elite IP -->
+                <div class="download-image-wrapper" onclick="downloadApp2()">
+                    <img 
+                        src="https://customer-assets.emergentagent.com/job_a0289693-7d97-4f72-beb9-4a8b2903a8cd/artifacts/erhxjrgw_1%20%282%29.jpg" 
+                        alt="Download Elite IP" 
+                        class="download-image"
+                    />
+                </div>
+
+            </div>
 
             <p class="instructions">
                 Após instalar, envie uma foto do aplicativo aberto.
@@ -183,16 +194,44 @@
     </div>
 
     <script>
-        // IMPORTANTE: Coloque o link de download direto aqui
-        const downloadLink = 'https://apk.shameltv.com';
+        // ====================================================================
+        // IMPORTANTE: COLOQUE OS LINKS DE DOWNLOAD DIRETO AQUI EMBAIXO
+        // ====================================================================
+        
+        // Link de download para a PRIMEIRA IMAGEM (Shamel TV)
+        const downloadLink1 = 'https://apk.shameltv.com';
+        
+        // Link de download para a SEGUNDA IMAGEM (Elite IP)
+        const downloadLink2 = 'https://eliteapp.top/apps/eliteVuFINAL.apk';
+        
+        // ====================================================================
         
         // Número do WhatsApp (sem espaços ou caracteres especiais)
         const whatsappNumber = '5583986337898';
 
-        function handleDownload() {
-            window.open(downloadLink, '_blank');
+        // Função para download da primeira imagem
+        function downloadApp1() {
+            // Inicia o download sem abrir nova página
+            const link = document.createElement('a');
+            link.href = downloadLink1;
+            link.download = ''; // Força o download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
+        // Função para download da segunda imagem
+        function downloadApp2() {
+            // Inicia o download sem abrir nova página
+            const link = document.createElement('a');
+            link.href = downloadLink2;
+            link.download = ''; // Força o download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Função para abrir WhatsApp
         function handleWhatsApp() {
             window.open('https://wa.me/' + whatsappNumber, '_blank');
         }
